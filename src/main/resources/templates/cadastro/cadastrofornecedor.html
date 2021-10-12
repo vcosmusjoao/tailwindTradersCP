@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Tailwind Traders-Fornecedor</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/materialize.min.css"  media="screen,projection"/>
+</head>
+
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <h1 >Cadastro de Fornecedor</h1>
+        </div>
+        <div class="col s6">
+            <img src="img/BillyGates.png" alt="billygates">
+        </div>
+    </div>
+    <form action="salvarfornecedor" method="post" th:object="${fornecedorobj}">
+    <label>ID</label>
+    <input name="id" th:field="*{id}" readonly="readonly">
+  <label>Nome</label>
+    <input name="nome" th:field="*{nome}">
+  <label>Cnpj</label>
+    <input name="cnpj" th:field="*{cnpj}">
+
+ <input class="waves-effect light-blue darken-3 btn" type="submit" value="Salvar">
+</form>
+    <a href="/">Home</a><br>
+    <a href="/listafornecedores">Lista de Fornecedores</a><br>
+    <a href="/cadastrocategoria">Página Inicial</a>
+<table>
+    <tr th:each= "fornecedor : ${fornecedores}">
+        <td th:text="${fornecedor.id}"></td>
+        <td th:text="${fornecedor.nome}"></td>
+        <td th:text="${fornecedor.cnpj}"></td>
+
+        <td><a th:href="@{/editarfornecedor/{idfornecedor}(idfornecedor=${fornecedor.id})}">Editar</a></td>
+        <td><a th:href="@{/excluirfornecedor/{idfornecedor}(idfornecedor=${fornecedor.id})}">Excluir</a></td>
+
+    </tr>
+
+</table>
+
+<script type="text/javascript" src="static/materialize/js/materialize.js"></script>
+<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</div>
+</body>
+</html>
